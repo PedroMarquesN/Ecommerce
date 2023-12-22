@@ -41,8 +41,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'redirectAdmin'], function(){
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::get('dashboard', [AdminController::class,'index'])->name('admin.dashboard');
 
-
+    //produtos routes
     Route::get('products' , [ProductController::class, 'index'])->name('admin.products.index');
+    Route::post('products/store', [ProductController::class, 'store'])->name('admin.products.store');
+
    
 });
 
