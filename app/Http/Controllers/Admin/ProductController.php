@@ -17,7 +17,7 @@ class ProductController extends Controller
     
     public function index ()
     {
-        $products = Product::with('category', 'brand')->get();
+        $products = Product::with('category', 'brand', 'product_images')->get();
         $brands = Brand::get();
         $categories = Category::get();
         
@@ -57,6 +57,12 @@ class ProductController extends Controller
         }
 
         return redirect()->route('admin.products.index')->with('sucess','Produto criado com sucesso.');
+
+    }
+
+    public function deleteImage($id){
+        $image = ProductImage::where('id',$id)->delete();
+        return redirect()->route('admin.products.index')->with('sucess', 'imagem deletada com sucesso.');
 
     }
 }
