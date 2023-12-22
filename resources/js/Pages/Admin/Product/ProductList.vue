@@ -109,27 +109,24 @@ const openEditModal = (product) => {
 
 //deleteImage
 
-const deleteImage = async (pimage, index) =>{
-    try{
-        await router.delete('/admin/products/image/' + pimage.id,{
-            onSuccess:(page)=>{
-                product_images.value.splice(index,1);
+const deleteImage = async (pimage, index) => {
+    try {
+        await router.delete("/admin/products/image/" + pimage.id, {
+            onSuccess: (page) => {
+                product_images.value.splice(index, 1);
                 Swal.fire({
-                    toast:true,
-                    icon:"success",
-                    position:"top-end",
+                    toast: true,
+                    icon: "success",
+                    position: "top-end",
                     showConfirmButton: false,
-                    title: page.props.flash.success
-                })
-            }
-        })
-
-    }catch(err){
+                    title: page.props.flash.success,
+                });
+            },
+        });
+    } catch (err) {
         console.log(err);
     }
-}
-
-
+};
 </script>
 
 <template>
@@ -232,22 +229,21 @@ const deleteImage = async (pimage, index) =>{
                     </select>
                 </div>
 
-                <div class="grid md:gap-6">
+                <div class="grid md:grid-cols-2 gap-6">
                     <div class="relative z-0 w-full mb-5 group">
-                        <form class="max-w-sm mx-auto">
-                            <label
-                                for="message"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Descrição</label
-                            >
-                            <textarea
-                                id="message"
-                                v-model="description"
-                                rows="4"
-                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Leave a comment..."
-                            ></textarea>
-                        </form>
+                        <label
+                            for="message"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                            Descrição
+                        </label>
+                        <textarea
+                            id="message"
+                            v-model="description"
+                            rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Leave a comment..."
+                        ></textarea>
                     </div>
                 </div>
 
@@ -272,24 +268,23 @@ const deleteImage = async (pimage, index) =>{
 
                 <!--lista de imagens de produtos selecionados-->
                 <div class="flex flex-nowrap mb-8">
-  <div
-    v-for="(pimage, index) in product_images"
-    :key="pimage.id"
-    class="relative w-32 h-32"
-  >
-    <img
-      class="w-24 h-20 rounded"
-      :src="`/${pimage.image}`"
-      alt=""
-    />
-    <span
-      class="absolute top-0 right-0 transform translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full cursor-pointer"
-      @click="deleteImage(pimage, index)"
-    >
-      
-    </span>
-  </div>
-</div>
+                    <div
+                        v-for="(pimage, index) in product_images"
+                        :key="pimage.id"
+                        class="relative w-32 h-32"
+                    >
+                        <img
+                            class="w-24 h-20 rounded"
+                            :src="`/${pimage.image}`"
+                            alt=""
+                        />
+                        <span
+                            class="absolute top-0 right-0 transform translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full cursor-pointer"
+                            @click="deleteImage(pimage, index)"
+                        >
+                        </span>
+                    </div>
+                </div>
 
                 <!--FIM-->
 
