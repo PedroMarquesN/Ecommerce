@@ -1,11 +1,12 @@
 <script setup>
 import { router, usePage } from "@inertiajs/vue3";
-import { swal, Swal } from "sweetalert2/dist/sweetalert2";
+import Swal from 'sweetalert2'
 import { ref } from "vue";
 
 const products = usePage().props.products;
 const brands = usePage().props.brands;
 const categories = usePage().props.categories;
+const page = usePage()
 
 const isAddProduct = ref(false);
 const editMode = ref(false);
@@ -45,6 +46,8 @@ const openAddModal = () => {
     isAddProduct.value = true;
     dialogVisible.value = true;
     editMode.value = false;
+
+
 };
 
 const AddProduct = async () => {
@@ -62,20 +65,9 @@ const AddProduct = async () => {
     }
 
     try {
-        await router.post("products/store", formData, {
-            onSucess: (page) => {
-                Swal.fire({
-                    toast: true,
-                    icon: "success",
-                    position: "top-end",
-                    showConfirmation: false,
-                    title: page.props.flash.success,
-                });
-
-                dialogVisible.value = false;
-                resetFormData();
-            },
-        });
+        router.post("products/store", formData)
+        dialogVisible.value = false;
+        
     } catch (err) {
         console.log(err);
     }
@@ -118,7 +110,7 @@ const deleteImage = async (pimage, index) => {
                     toast: true,
                     icon: "success",
                     position: "top-end",
-                    showConfirmButton: false,
+                    showConfirmation: false,
                     title: page.props.flash.success,
                 });
             },
@@ -127,6 +119,45 @@ const deleteImage = async (pimage, index) => {
         console.log(err);
     }
 };
+//update product method
+
+const updateProduct = async () => {
+    const formData = new FormData();
+
+    formData.append('title, title.value');
+    formData.append('price, price.value');
+    formData.append('quantity, quantity.value');
+    formData.append('description, description.value');
+    formData.append('category_id, category_id.value');
+    formData.append('brand_id, brand_id.value');
+    formData.append("_method", 'PUT');
+
+    //append product images tot the formdata
+
+    for(const image of productImages.value){
+        formData.append('product_images[]', image.raw)
+    }
+    try{
+        await router.post('products/update/'+ id.value, formData,{
+            onSuccess:(page)=>{
+                Swal.fire({
+                    toast: true,
+                    icon: "success",
+                    position: "top-end",
+                    showConfirmation: false,
+                    title: page.props.flash.success,
+                });
+                dialogVisible.value = false;
+                resetFormData();
+            }
+        })
+
+    }catch(err){
+        console.log(err)
+    }
+
+}
+
 </script>
 
 <template>
@@ -137,7 +168,7 @@ const deleteImage = async (pimage, index) => {
             width="50%"
             :before-close="handleClose"
         >
-            <form @submit.prevent="AddProduct()">
+            <form @submit.prevent="editMode ? updateProduct():AddProduct()">
                 <div class="relative z-0 w-full mb-5 group">
                     <input
                         v-model="title"
