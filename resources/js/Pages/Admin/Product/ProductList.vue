@@ -271,25 +271,25 @@ const deleteImage = async (pimage, index) =>{
                 <!--FIM add imagens-->
 
                 <!--lista de imagens de produtos selecionados-->
-                <div class="flex flex-nowrap mb-8 ">
-                    <div
-                        v-for="(pimage, index) in product_images"
-                        :key="pimage.id"
-                        class="relative w-32 h-32"
-                    >
-                        <img
-                            class="w-24 h-20 rounded"
-                            :src="`/${pimage.image}`"
-                            alt=""
-                        />
-                        <span
-                            class="absolute top-0 right-8 transform -translate-y-1/2 w-3.5 h-3.5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full">
-                        ></span>
-                        <span @click="deleteImage(pimage,index)" class="text-white text-xs font-bold absolute top-1/2 left -1/2 transform -translate-x-1/2 -translate-y-1/2">
-                            X
-                        </span>
-                    </div>
-                </div>
+                <div class="flex flex-nowrap mb-8">
+  <div
+    v-for="(pimage, index) in product_images"
+    :key="pimage.id"
+    class="relative w-32 h-32"
+  >
+    <img
+      class="w-24 h-20 rounded"
+      :src="`/${pimage.image}`"
+      alt=""
+    />
+    <span
+      class="absolute top-0 right-0 transform translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-red-400 border-2 border-white dark:border-gray-800 rounded-full cursor-pointer"
+      @click="deleteImage(pimage, index)"
+    >
+      
+    </span>
+  </div>
+</div>
 
                 <!--FIM-->
 
