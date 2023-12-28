@@ -158,6 +158,38 @@ const updateProduct = async () => {
 
 }
 
+//delete Product
+const deleteProduct = (product, index) =>{
+    Swal.fire({
+        title: 'Você tem certeza?',
+        text:'Essa ação não pode ser desfeita',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText:'Não',
+        confirmButtonText:'Sim, Deletar!'
+    }).then((result)=>{
+        try {
+            router.delete('products/destroy/' + product.id,{
+                onSuccess:(page)=>{
+                    this.delete(product,index);
+                    Swal.fire({
+                    toast: true,
+                    icon: "success",
+                    position: "top-end",
+                    showConfirmation: false,
+                    title: page.props.flash.success,
+                });
+                }
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    })
+}
+
+
 </script>
 
 <template>
@@ -662,13 +694,7 @@ const updateProduct = async () => {
                                             class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             :aria-labelledby="`${product.id}-button`"
                                         >
-                                            <li>
-                                                <a
-                                                    href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                    >Show</a
-                                                >
-                                            </li>
+
                                             <li>
                                                 <button
                                                     @click="
@@ -682,6 +708,7 @@ const updateProduct = async () => {
                                         </ul>
                                         <div class="py-1">
                                             <a
+                                                @click="deleteProduct(product, index)"
                                                 href="#"
                                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                 >Delete</a
