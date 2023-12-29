@@ -1,35 +1,10 @@
 <script setup>
-import { onMounted } from "vue";
-import { initFlowbite } from "flowbite";
 import UserLayouts from "./Layouts/UserLayouts.vue";
 
-// initialize components based on data attribute selectors
-onMounted(() => {
-    initFlowbite();
-});
-//produtos list
-const products = [
-    {
-        id: 1,
-        name: "Basic Tee",
-        href: "#",
-        imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: "$35",
-        color: "Black",
-    },
-    {
-        id: 1,
-        name: "Basic Tee",
-        href: "#",
-        imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-        imageAlt: "Front of men's Basic Tee in black.",
-        price: "$35",
-        color: "Black",
-    },
-];
+
+defineProps({
+    products:Array
+})
 </script>
 <template>
 <UserLayouts>
@@ -54,7 +29,14 @@ const products = [
                         class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
                     >
                         <img
-                            :src="product.imageSrc"
+                            v-if="product.product_images.length > 0"
+                            :src="`/${product.product_images[0].image}`"
+                            :alt="product.imageAlt"
+                            class="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                        />
+                        <img
+                            v-else
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/832px-No-Image-Placeholder.svg.png"
                             :alt="product.imageAlt"
                             class="h-full w-full object-cover object-center lg:h-full lg:w-full"
                         />
@@ -67,15 +49,15 @@ const products = [
                                         aria-hidden="true"
                                         class="absolute inset-0"
                                     />
-                                    {{ product.name }}
+                                    {{ product.title }}
                                 </a>
                             </h3>
                             <p class="mt-1 text-sm text-gray-500">
-                                {{ product.color }}
+                                {{ product.brand.name }}
                             </p>
                         </div>
                         <p class="text-sm font-medium text-gray-900">
-                            {{ product.price }}
+                            $ {{ product.price }}
                         </p>
                     </div>
                 </div>
