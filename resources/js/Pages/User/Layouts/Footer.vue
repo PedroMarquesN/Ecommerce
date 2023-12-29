@@ -6,25 +6,25 @@
     >
         <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
             >© 2023
-            <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a
-            >. All Rights Reserved.
+            <a href="https://flowbite.com/" class="hover:underline">Platinum Jeans</a
+            >. Todos os direitos reservados.
         </span>
         <ul
             class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
         >
             <li>
-                <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                <a href="#" class="hover:underline me-4 md:me-6">Sobre-nós</a>
             </li>
             <li>
                 <a href="#" class="hover:underline me-4 md:me-6"
-                    >Privacy Policy</a
+                    >Politica de Privacidade</a
                 >
             </li>
             <li>
-                <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                <a href="#" class="hover:underline me-4 md:me-6">Licença</a>
             </li>
             <li>
-                <a href="#" class="hover:underline">Contact</a>
+                <a href="#" class="hover:underline">Contato</a>
             </li>
         </ul>
     </footer>
