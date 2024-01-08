@@ -46,5 +46,10 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
     
 }

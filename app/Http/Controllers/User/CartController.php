@@ -33,15 +33,78 @@ class CartController extends Controller
         }
         else{
             $cartItems = Cart::getCookieCartItems();
+            $isProductExists = false;
+            foreach($cartItems as $item){
+                if($item['product_id'] === $product->id)
+                {
+                    $item['quantity'] += $quantity;
+                    $isProductExists = true;
+                    break;
+                }
+            }
+
+            if(!$isProductExists){
+                $cartItems[] = [
+                    'user_id' => null,
+                    'product_id' => $product->id,
+                    'quantity' => $quantity,
+                    'price' => $product->price,
+                ];
+            }
+
+            Cart::setCookieCartItems($cartItems);
         }
         
+        return redirect()->back()->with('success', 'Produto Adicionado com Sucesso.');
     }
 
-    public function update (){
-        
+    public function update (Request $request , Product $product)
+    {
+        $quantity = $request->integer('quantity');
+        $user = $request->user();
+
+        if($user){
+            CartItem::where(['user_id' => $user->id, 'product_id' => $product->id])->update(['quantity' => $quantity]);
+        }
+        else{
+            $cartItems = Cart::getCookieCartItems();
+            foreach($cartItems as &$item){
+                if($item['$product_id'] === $product->id){
+                    $item['quantity'] = $quantity;
+                    break;
+                }
+            }
+            Cart::setCookieCartItems($cartItems);
+        }
+
+        return redirect()->back();
     }
 
-    public function delete (){
-        
+    public function delete (Request $request, Product $product)
+    {
+        $user = $request->user();
+        if($user){
+            CartItem::query()->where(['user_id' => $user->id, 'product_id' => $product->id])->first()?->delete();
+            if(CartItem::count() <= 0){
+                return redirect()->route('home')->with('info', 'Seu Carrinho está vazio!');
+            }else{
+                return redirect()->back()->with('success', 'Item removido com sucesso !');
+            }
+        }
+        else{
+            $cartItems = Cart::getCookieCartItems();
+            foreach($cartItems as $i => &$item){
+                if($item['product_id'] === $product->id){
+                    array_splice($cartItems, $i, 1);
+                    break;
+                }
+            }
+            Cart::setCookieCartItems($cartItems);
+            if(count($cartItems) <= 0){
+                return redirect()->route('home')->with('info', 'Seu Carrinho está vazio!');
+            }else{
+                return redirect()->back()->with('success', 'Item removido com sucesso !');
+            }
+        }    
     }
 }
