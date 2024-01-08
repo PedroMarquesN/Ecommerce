@@ -2,7 +2,8 @@
 
 import { Link, router } from '@inertiajs/vue3'
 import UserLayouts from "./Layouts/UserLayouts.vue";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import Hero from './Layouts/Hero.vue';
 
 
 defineProps({
@@ -28,6 +29,9 @@ const addToCart = (product) => {
 </script>
 <template>
     <UserLayouts>
+        <!--Hero Propaganda-->
+        <Hero></Hero>
+        <!-- END Hero Propaganda-->
         <!--Main content-->
         <div class="bg-white">
             <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -53,7 +57,7 @@ const addToCart = (product) => {
                                 class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 cursor-pointer !important">
 
                                 <div class="bg-blue-700 p-2 rounded-full">
-                                    <a  @click="addToCart(product)">
+                                    <a @click="addToCart(product)">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -92,10 +96,10 @@ const addToCart = (product) => {
                         <div class="mt-4 flex justify-between">
                             <div>
                                 <h3 class="text-sm text-gray-700">
-                                    
-                                        <span aria-hidden="true" class="" />
-                                        {{ product.title }}
-                                    
+
+                                    <span aria-hidden="true" class="" />
+                                    {{ product.title }}
+
                                 </h3>
                                 <p class="mt-1 text-sm text-gray-500">
                                     {{ product.brand.name }}
@@ -111,4 +115,5 @@ const addToCart = (product) => {
         </div>
         <!-- END Main content-->
 
-    </UserLayouts></template>
+    </UserLayouts>
+</template>

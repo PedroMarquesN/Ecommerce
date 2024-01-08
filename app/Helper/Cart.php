@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Cookie;
 
 class Cart
 {
-    public static function getCount()
+    public static function getCount() :int
     {
         if($user = auth()->user()){
-            return CartItem::whereUserId($user->id)->sum('quantity');
+            return CartItem::whereUserId($user->id)->count();
         }else{
-            return array_reduce(self::getCookieCartItems(), fn($carry, $item) => $carry + $item['quantity'],0);
+            return array_reduce(self::getCookieCartItems(), fn($carry) => $carry +1 ,0);
         }
 
 

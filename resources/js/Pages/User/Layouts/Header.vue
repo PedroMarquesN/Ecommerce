@@ -1,7 +1,7 @@
 <script setup>
-import { usePage, Link } from '@inertiajs/vue3'
-import { computed } from 'vue';
 
+import { computed } from 'vue';
+import { usePage, Link } from '@inertiajs/vue3'
 
 const canLogin = usePage().props.canLogin;
 const canRegister = usePage().props.canRegister;
@@ -13,11 +13,11 @@ const cart = computed(()=>usePage().props.cart);
 <template>
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <Link :href="route('user.home')" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://images.tokopedia.net/img/cache/215-square/shops-1/2015/5/1/407831/407831_79ab6988-efe5-11e4-9cf4-82f849bc7260.jpg"
                     class="h-20" alt="Flowbite Logo" />
 
-            </a>
+            </Link>
             <div v-if="canLogin" class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
 
@@ -25,7 +25,7 @@ const cart = computed(()=>usePage().props.cart);
 
 
 
-                    <button type="button"
+                    <Link :href="route('cart.view')" type="button"
                         class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -36,7 +36,7 @@ const cart = computed(()=>usePage().props.cart);
                         <div
                             class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
                             {{cart.data.count}}</div>
-                    </button>
+                    </Link>
 
                 </div>
 
