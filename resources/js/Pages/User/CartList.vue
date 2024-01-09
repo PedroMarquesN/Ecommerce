@@ -1,7 +1,12 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, defineProps, reactive } from 'vue';
 import { usePage, router } from '@inertiajs/vue3'
 import UserLayouts from './Layouts/UserLayouts.vue';
+
+
+defineProps({
+    userAddress: Object
+})
 
 
 const carts = computed(() => usePage().props.cart.data.items)
@@ -9,12 +14,43 @@ const products = computed(() => usePage().props.cart.data.products)
 const total = computed(() => usePage().props.cart.data.total)
 const itemId = (id) => carts.value.findIndex((item) => item.product_id === id)
 
+const form = reactive({
+    adress1: null,
+    state: null,
+    city: null,
+    zipcode: null,
+    country_code: null,
+    type: null,
+
+})
+const formFilled = computed(()=>{
+   return (
+    form.adress1 !== null &&
+    form.state !== null &&
+    form.city !== null &&
+    form.zipcode !== null &&
+    form.country_code !== null &&
+    form.type !== null )
+})
 const update = (product, quantity) =>
     router.patch(route('cart.update', product), {
         quantity,
     })
 
 const remove = (product) => router.delete(route('cart.delete', product));
+
+
+function submit() {
+    router.visit(route('checkout.store'), {
+        method: 'post',
+        data: {
+            carts: usePage().props.cart.data.items,
+            products: usePage().props.cart.data.products,
+            total: usePage().props.cart.data.total,
+            address: form
+        }
+    })
+}
 </script>
 
 <template>
@@ -96,7 +132,7 @@ const remove = (product) => router.delete(route('cart.delete', product));
                                     </td>
                                     <td class="px-6 py-4">
                                         <a @click="remove(product)"
-                                            class="font-medium text-red-600 dark:text-red-500 hover:underline">Remover</a>
+                                            class="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">Remover</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -107,27 +143,60 @@ const remove = (product) => router.delete(route('cart.delete', product));
                 </div>
                 <div class="lg:w-1/3 md:w-1/2 bg-white flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
                     <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Resumo</h2>
-                    <p class="leading-relaxed mb-5 text-gray-600">Total : ${{total}}</p>
-                    <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Endereço para Envio</h2>
-                    <p class="leading-relaxed mb-5 text-gray-600">Rua Vf 65 Quadra 61</p>
-                    <p class="leading-relaxed mb-5 text-gray-600">Ou coloque um novo endereço.</p>
-                    <div class="relative mb-4">
-                        <label for="name" class="leading-7 text-sm text-gray-600">Nome</label>
-                        <input type="text" id="name" name="name"
-                            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <p class="leading-relaxed mb-5 text-gray-600">Total : ${{ total }}</p>
+
+                    <div v-if="userAddress">
+                        <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Endereço para Envio</h2>
+                        <p class="leading-relaxed mb-5 text-gray-600">{{ userAddress.adress1 }},{{ userAddress.city }}, {{
+                            userAddress.zipcode }}</p>
+                        <p class="leading-relaxed mb-5 text-gray-600">Ou coloque um novo endereço.</p>
+
                     </div>
-                    <div class="relative mb-4">
-                        <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                        <input type="email" id="email" name="email"
-                            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <div v-else>
+                        <p class="leading-relaxed mb-5 text-gray-600">Adicione um endereço para continuar!</p>
                     </div>
-                    <div class="relative mb-4">
-                        <label for="message" class="leading-7 text-sm text-gray-600">Mensagem</label>
-                        <textarea id="message" name="message"
-                            class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
-                    </div>
-                    <button
-                        class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Confirmar</button>
+
+
+                    <form @submit.prevent="submit">
+                        <div class="relative mb-4">
+                            <label for="name" class="leading-7 text-sm text-gray-600">Endereço 1</label>
+                            <input type="text" id="name" name="address1" v-model="form.address1"
+                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <div class="relative mb-4">
+                            <label for="city" class="leading-7 text-sm text-gray-600">Cidade</label>
+                            <input type="text" id="city" name="city" v-model="form.city"
+                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <div class="relative mb-4">
+                            <label for="state" class="leading-7 text-sm text-gray-600">Estado</label>
+                            <input type="text" id="state" name="state" v-model="form.state"
+                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <div class="relative mb-4">
+                            <label for="cep" class="leading-7 text-sm text-gray-600">CEP</label>
+                            <input type="text" id="cep" name="zipcode" v-model="form.zipcode"
+                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <div class="relative mb-4">
+                            <label for="cpais" class="leading-7 text-sm text-gray-600">Código do País</label>
+                            <input type="text" id="cpais" name="country_code" v-model="form.country_code"
+                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <div class="relative mb-4">
+                            <label for="cpais" class="leading-7 text-sm text-gray-600">Tipo de endereço</label>
+                            <input type="text" id="cpais" name="type" v-model="form.type"
+                                placeholder="ex: residencial, comercial etc..."
+                                class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <button v-if="formFilled || userAddress" type="submit"
+                            class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Confirmar</button>
+
+                        <button v-else type="submit"
+                            class="text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">Adicione um endereço para continuar.</button>
+                    </form>
+
+
                     <p class="text-xs text-gray-500 mt-3">Obrigado por escolher nossa loja.</p>
                 </div>
             </div>
