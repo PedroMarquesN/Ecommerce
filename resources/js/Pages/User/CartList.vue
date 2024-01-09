@@ -24,14 +24,18 @@ const form = reactive({
 
 })
 const formFilled = computed(()=>{
-   return (
+   
+    return         (
     form.adress1 !== null &&
     form.state !== null &&
     form.city !== null &&
     form.zipcode !== null &&
     form.country_code !== null &&
     form.type !== null )
+
 })
+
+
 const update = (product, quantity) =>
     router.patch(route('cart.update', product), {
         quantity,
@@ -160,7 +164,7 @@ function submit() {
                     <form @submit.prevent="submit">
                         <div class="relative mb-4">
                             <label for="name" class="leading-7 text-sm text-gray-600">Endereço 1</label>
-                            <input type="text" id="name" name="address1" v-model="form.address1"
+                            <input type="text" id="name" name="address1" v-model="form.adress1"
                                 class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative mb-4">
