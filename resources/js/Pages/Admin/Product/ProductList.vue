@@ -180,18 +180,18 @@ const updateProduct = async () => {
 //delete product method 
 const deleteProduct = (product, index) => {
     Swal.fire({
-        title: 'Are you Sure',
-        text: "This actions cannot undo!",
+        title: 'Voce tem certeza?',
+        text: "Essa ação não pode ser desfeita!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        cancelButtonText: 'no',
-        confirmButtonText: 'yes, delete!'
+        cancelButtonText: 'Não',
+        confirmButtonText: 'Sim, Excluir'
     }).then((result) => {
         if (result.isConfirmed) {
             try {
-                router.delete('products/destory/' + product.id, {
+                router.delete('products/destroy/' + product.id, {
                     onSuccess: (page) => {
                         this.delete(product, index);
                         Swal.fire({
@@ -224,26 +224,26 @@ const deleteProduct = (product, index) => {
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" " required />
                     <label for="floating_title"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nome</label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
                     <input type="text" name="floating_price" id="floating_price"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" " required v-model="price" />
                     <label for="floating_price"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Price</label>
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Preço</label>
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
                     <input type="number" name="qty" id="floating_qty"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" " required v-model="quantity" />
                     <label for="floating_qty"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quantity</label>
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Quantidade</label>
                 </div>
 
                 <div>
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                        Category</label>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecione a
+                        Categoria</label>
                     <select id="countries" v-model="category_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}
@@ -254,8 +254,8 @@ const deleteProduct = (product, index) => {
 
 
                 <div>
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                        Brand</label>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecione a
+                        Marca</label>
                     <select id="countries" v-model="brand_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option v-for="brand in brands" :key="brand.id" :value="brand.id">{{ brand.name }}</option>
@@ -268,10 +268,10 @@ const deleteProduct = (product, index) => {
                     <div class="relative z-0 w-full mb-6 group">
 
                         <label for="message"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição</label>
                         <textarea id="message" rows="4" v-model="description"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Leave a comment..."></textarea>
+                            placeholder="Adicione uma descrição..."></textarea>
 
                     </div>
 
@@ -324,7 +324,7 @@ const deleteProduct = (product, index) => {
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                     <div class="w-full md:w-1/2">
                         <form class="flex items-center">
-                            <label for="simple-search" class="sr-only">Search</label>
+                            <label for="simple-search" class="sr-only">Procurar</label>
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -349,7 +349,7 @@ const deleteProduct = (product, index) => {
                                 <path clip-rule="evenodd" fill-rule="evenodd"
                                     d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                             </svg>
-                            Add product
+                            Adicionar produto
                         </button>
                         <div class="flex items-center space-x-3 w-full md:w-auto">
                             <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
@@ -368,14 +368,12 @@ const deleteProduct = (product, index) => {
                                     aria-labelledby="actionsDropdownButton">
                                     <li>
                                         <a href="#"
-                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mass
-                                            Edit</a>
+                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Editar Todos</a>
                                     </li>
                                 </ul>
                                 <div class="py-1">
                                     <a href="#"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
-                                        all</a>
+                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Deletar Todos</a>
                                 </div>
                             </div>
                             <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
@@ -442,15 +440,15 @@ const deleteProduct = (product, index) => {
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-4 py-3">Product name</th>
-                                <th scope="col" class="px-4 py-3">Category</th>
-                                <th scope="col" class="px-4 py-3">Brand</th>
-                                <th scope="col" class="px-4 py-3">Quantity</th>
-                                <th scope="col" class="px-4 py-3">Price</th>
-                                <th scope="col" class="px-4 py-3">Stock</th>
-                                <th scope="col" class="px-4 py-3">Publish</th>
+                                <th scope="col" class="px-4 py-3">Nome do Produto</th>
+                                <th scope="col" class="px-4 py-3">Categoria</th>
+                                <th scope="col" class="px-4 py-3">Marca</th>
+                                <th scope="col" class="px-4 py-3">Quantidade</th>
+                                <th scope="col" class="px-4 py-3">Preço</th>
+                                <th scope="col" class="px-4 py-3">Estoque</th>
+                                <th scope="col" class="px-4 py-3">Publicado</th>
                                 <th scope="col" class="px-4 py-3">
-                                    <span class="sr-only">Actions</span>
+                                    <span class="sr-only">Açôes</span>
                                 </th>
                             </tr>
                         </thead>
@@ -467,17 +465,16 @@ const deleteProduct = (product, index) => {
 
                                 <td class="px-4 py-3">
                                     <span v-if="product.inStock == 0"
-                                        class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">inStock</span>
+                                        class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Em Estoque</span>
                                     <span v-else
-                                        class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Out
-                                        of Stock</span>
+                                        class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Sem Estoque</span>
 
                                 </td>
                                 <td class="px-4 py-3">
                                     <button v-if="product.published == 0" type="button"
-                                        class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Published</button>
+                                        class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Publicado</button>
                                     <button v-else type="button"
-                                        class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">UnPublished</button>
+                                        class="px-3 py-2 text-xs font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Não Publicado</button>
 
                                 </td>
 
@@ -499,12 +496,12 @@ const deleteProduct = (product, index) => {
 
                                             <li>
                                                 <a href="#" @click="openEditModal(product)"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Editar</a>
                                             </li>
                                         </ul>
                                         <div class="py-1">
                                             <a href="#" @click="deleteProduct(product, index)"
-                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Deletar</a>
                                         </div>
                                     </div>
                                 </td>
@@ -516,16 +513,16 @@ const deleteProduct = (product, index) => {
                 <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
                     aria-label="Table navigation">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Showing
+                        Pagina
                         <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
-                        of
+                        de
                         <span class="font-semibold text-gray-900 dark:text-white">1000</span>
                     </span>
                     <ul class="inline-flex items-stretch -space-x-px">
                         <li>
                             <a href="#"
                                 class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only">Previous</span>
+                                <span class="sr-only">Anterior</span>
                                 <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
