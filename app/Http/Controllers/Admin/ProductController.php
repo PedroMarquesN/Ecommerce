@@ -55,11 +55,10 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Produto Atualizado com sucesso');
     }
     
-    public function store (Request $request)
+    public function store(Request $request)
     {
-        
-        $product = new Product;
 
+        $product = new Product;
         $product->title = $request->title;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
@@ -68,22 +67,23 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->save();
 
-        if($request->hasFile('product_images')){
+        //check if product has images upload 
+
+        if ($request->hasFile('product_images')) {
             $productImages = $request->file('product_images');
-            foreach ($productImages as $image){
+            foreach ($productImages as $image) {
+                // Generate a unique name for the image using timestamp and random string
                 $uniqueName = time() . '-' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-
+                // Store the image in the public folder with the unique name
                 $image->move('product_images', $uniqueName);
-
+                // Create a new product image record with the product_id and unique name
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'image'=> 'product_images/' . $uniqueName,
+                    'image' => 'product_images/' . $uniqueName,
                 ]);
             }
         }
-        return to_route('admin.products.index')->with('success', 'Produto criado com sucesso.');
-
-
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
     public function deleteImage($id){
