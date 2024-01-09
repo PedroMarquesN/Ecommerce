@@ -84,18 +84,16 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Produto Adicionado com Sucesso.');
     }
 
-    public function update (Request $request , Product $product)
+    public function update(Request $request, Product $product)
     {
         $quantity = $request->integer('quantity');
         $user = $request->user();
-
-        if($user){
+        if ($user) {
             CartItem::where(['user_id' => $user->id, 'product_id' => $product->id])->update(['quantity' => $quantity]);
-        }
-        else{
+        } else {
             $cartItems = Cart::getCookieCartItems();
-            foreach($cartItems as &$item){
-                if($item['$product_id'] === $product->id){
+            foreach ($cartItems as &$item) {
+                if ($item['product_id'] === $product->id) {
                     $item['quantity'] = $quantity;
                     break;
                 }
@@ -105,7 +103,6 @@ class CartController extends Controller
 
         return redirect()->back();
     }
-
     public function delete (Request $request, Product $product)
     {
         $user = $request->user();
