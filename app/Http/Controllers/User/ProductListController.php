@@ -29,4 +29,8 @@ class ProductListController extends Controller
             ]
         );
     }
+
+    public function detail(){
+        return Inertia::render('User/DetailProducts');
+    }
 }

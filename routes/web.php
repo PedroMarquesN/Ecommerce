@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 // User Routes
-
+Route::get('detail',[ProductListController::class,'detail'])->name('product.detail');
 Route::get('/', [UserController::class,'index'])->name('user.home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,13 +26,15 @@ Route::middleware('auth')->group(function () {
 
     //chekcout 
     Route::prefix('checkout')->controller(CheckoutController::class)->group((function()  {
-        Route::post('order','store')->name('checkout.store');
+        Route::post('order','store')->name('checkout.store');  
         Route::get('success','success')->name('checkout.success');
         Route::get('cancel','cancel')->name('checkout.cancel');
     }));
   
 });
 //end
+
+
 //add to cart
 Route::prefix('cart')->controller(CartController::class)->group(function(){
     Route::get('view','view')->name('cart.view');
