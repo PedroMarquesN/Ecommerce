@@ -151,10 +151,16 @@ class CheckoutController extends Controller
                 $order->status = 'paid';
                 $order->save();
             }
+            return redirect()->route('dashboard');
 
         }catch(\Exception $e){
             throw new NotFoundHttpException();
         }
+    }
+
+
+    public function cancel(Request $request){
+
     }
 
 
