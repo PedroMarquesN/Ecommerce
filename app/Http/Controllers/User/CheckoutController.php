@@ -160,7 +160,7 @@ class CheckoutController extends Controller
 
 
     public function cancel(Request $request){
-
+        return redirect()->route('user.home');
     }
 
 
