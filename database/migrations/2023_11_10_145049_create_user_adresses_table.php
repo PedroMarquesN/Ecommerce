@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type',45);
             $table->string('adress1',255);
-            $table->string('adress2',255);
+            $table->string('adress2',255)->nullable();
             $table->string('city',255);
             $table->string('state',45)->nullable();
             $table->string('zipcode',45);
