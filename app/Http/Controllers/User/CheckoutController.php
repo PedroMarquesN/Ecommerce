@@ -87,17 +87,25 @@ class CheckoutController extends Controller
             $order->session_id = $checkout_session->id;
             $order->created_by = $user->id;
             
-            $order->user_address_id = $mainAddress->id;
+            $order->user_adress_id = $mainAddress->id;
             $order->save();
 
+            
+            
             $cartItems = CartItem::where(['user_id'=> $user->id])->get();
+            //dd($cartItems);
+
             foreach($cartItems as $cartItem ){
+                
                 OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $cartItem->product_id,
                     'quantity' => $cartItem->quantity,
                     'unit_price' => $cartItem->product->price,
                 ]);
+
+
+
                 $cartItem->delete();
                 //remove cart items from cookies
                 $cartItems = Cart::getCookieCartItems();
