@@ -52,6 +52,7 @@ class CheckoutController extends Controller
         }
 
         $checkout_session = $stripe->checkout->sessions->create([
+            'payment_method_types' => ['card', 'boleto'],
             'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('checkout.success') . '?session_id={CHECKOUT_SESSION_ID}',
