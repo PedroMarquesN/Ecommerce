@@ -10,7 +10,10 @@ defineProps({
     products: Array,
     users: Array,
     totalPrice: Array,
-    orders: Array
+    orders: Array,
+    brands: Array,
+    categories: Array,
+    payments: Array
 });
 
 
@@ -26,7 +29,7 @@ onMounted(() => {
 
 <template>
     <AdminLayout>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4 py-20 lg:px-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4 py-11 lg:px-20">
             <!-- Card 1: Produtos -->
             <div class="flex w-full">
                 <div
@@ -42,8 +45,8 @@ onMounted(() => {
 
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl capitalize font-bold">Produtos</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">{{ products }}</h4>
+                            <p class="text-2xl capitalize font-bold">Produtos</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">{{ products }}</h4>
                         </div>
                     </div>
                     <hr class="opacity-50" />
@@ -69,8 +72,8 @@ onMounted(() => {
                             </svg>
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl font-bold capitalize">Usuários</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">{{ users }}</h4>
+                            <p class="text-2xl font-bold capitalize">Usuários</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">{{ users }}</h4>
                         </div>
                     </div>
                     <hr class="opacity-50" />
@@ -97,8 +100,8 @@ onMounted(() => {
                             </svg>
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl font-bold capitalize">Vendas</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">${{ totalPrice }}</h4>
+                            <p class="text-2xl font-bold capitalize">Vendas</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">${{ totalPrice }}</h4>
                         </div>
                     </div>
                     <hr class="opacity-50" />
@@ -126,8 +129,8 @@ onMounted(() => {
 
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl font-bold capitalize">Pedidos</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">{{ orders }}</h4>
+                            <p class="text-2xl font-bold capitalize">Pedidos</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">{{ orders }}</h4>
                         </div>
                     </div>
                     <hr class="opacity-50" />
@@ -155,8 +158,8 @@ onMounted(() => {
 
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl capitalize font-bold">Visualizações</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">1.400</h4>
+                            <p class="text-xl capitalize font-bold">Visualizações</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">1.400</h4>
                         </div>
                     </div>
                     <hr class="opacity-50" />
@@ -183,8 +186,8 @@ onMounted(() => {
 
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl font-bold capitalize">Pagamentos</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">14</h4>
+                            <p class="text-xl font-bold capitalize">Pagamentos</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">{{payments}}</h4>
                         </div>
                     </div>
                     <hr class="opacity-50" />
@@ -213,8 +216,8 @@ onMounted(() => {
 
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl font-bold capitalize">Marcas</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">5</h4>
+                            <p class="text-2xl font-bold capitalize">Marcas</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">{{brands}}</h4>
                         </div>
                     </div>
                     <hr class="opacity-50" />
@@ -243,8 +246,8 @@ onMounted(() => {
 
                         </div>
                         <div class="pt-1 text-right">
-                            <p class="text-4xl font-bold capitalize">Categorias</p>
-                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-4xl mt-2 shadow-md">{{ orders }}</h4>
+                            <p class="text-2xl font-bold capitalize">Categorias</p>
+                            <h4 class="text-2xl font-semibold tracking-tighter xl:text-2xl mt-2 shadow-md">{{ categories }}</h4>
 
 
                         </div>
