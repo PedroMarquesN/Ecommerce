@@ -14,11 +14,16 @@ class AdminController extends Controller
     public function index(){
         $products = Product::count();
         $users = User::count();
+        $totalOrderPrice = Order::sum('total_price');
         $orders = Order::count();
+
+
+        
         return Inertia::render('Admin/Components/Dashboard', [
             'admin'=>'admin',
             'products' => $products,
             'users' => $users,
+            'totalPrice' => $totalOrderPrice,
             'orders' => $orders,
         ]);
     }

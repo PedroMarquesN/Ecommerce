@@ -18,6 +18,12 @@ export default {
             },
         },
     },
-
-    plugins: [forms, require('flowbite/plugin')],
+    
+    plugins: [
+        forms,
+        require('flowbite/plugin')({
+            charts: true, // Aqui você ativa os gráficos
+            // ... outras opções do Flowbite, se houver
+        }),
+    ],
 };
