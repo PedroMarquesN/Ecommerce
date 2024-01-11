@@ -42,14 +42,14 @@ import { Link } from '@inertiajs/vue3';
           </button>
           <Link :href="route('admin.dashboard')" class="flex items-center justify-between mr-4">
             <img
-              src="https://flowbite.s3.amazonaws.com/logo.svg"
+              src="https://images.tokopedia.net/img/cache/215-square/shops-1/2015/5/1/407831/407831_79ab6988-efe5-11e4-9cf4-82f849bc7260.jpg"
               class="mr-3 h-8"
               alt="Flowbite Logo"
             />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Platinum Jeans</span>
           </Link>
           <form action="#" method="GET" class="hidden md:block md:pl-2">
-            <label for="topbar-search" class="sr-only">Search</label>
+            <label for="topbar-search" class="sr-only">Procurar</label>
             <div class="relative md:w-64 md:w-96">
               <div
                 class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
