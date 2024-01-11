@@ -44,11 +44,11 @@ Route::prefix('cart')->controller(CartController::class)->group(function(){
 });
 //end
 
+
 //router product list and filter
 Route::prefix('products')->controller(ProductListController::class)->group(function(){
     Route::get('/','index')->name('products.index');
 });
-
 //end
 
 
