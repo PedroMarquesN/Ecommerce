@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\GraphicsController;
 use App\Http\Controllers\Admin\PedidosController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RelatoryController;
@@ -85,6 +86,9 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::get('orders',[PedidosController::class,'index'])->name('order.index');
     //end
 
+    //Routes Graphics
+    Route::get('graphics',[GraphicsController::class,'index'])->name('graphic.index');
+    //End 
     //Routes Relatorios
     Route::get('relatory',[RelatoryController::class,'index'])->name('relatory.index');
     //end
