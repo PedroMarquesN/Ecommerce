@@ -9,6 +9,6 @@ use Inertia\Inertia;
 class PedidosController extends Controller
 {
     public function index(){
-        return Inertia::render('Admin/Components/OrderRelatory');
+        return Inertia::render('Admin/Orders/Index');
     }
 }

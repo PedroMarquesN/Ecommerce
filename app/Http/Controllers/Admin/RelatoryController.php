@@ -9,6 +9,6 @@ use Inertia\Inertia;
 class RelatoryController extends Controller
 {
     public function index(){
-        return Inertia::render('Admin/Components/Relatory');
+        return Inertia::render('Admin/Relatory/Index');
     }
 }
