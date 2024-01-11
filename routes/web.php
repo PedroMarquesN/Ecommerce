@@ -8,6 +8,7 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\ProductListController;
+use App\Http\Controllers\User\SobreNosController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,18 @@ Route::prefix('cart')->controller(CartController::class)->group(function(){
     Route::delete('delete/{product}','delete')->name('cart.delete');
 });
 //end
+
+
+//Routes Info
+Route::prefix('info')->controller(SobreNosController::class)->group(function (){
+    Route::get('/', 'index')->name('sobre.index');
+    Route::get('contato', 'contato')->name('contato.contato');
+
+});
+//END
+
+
+
 
 
 //router product list and filter

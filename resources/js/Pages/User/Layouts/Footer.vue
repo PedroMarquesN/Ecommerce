@@ -1,4 +1,5 @@
 <script setup>
+import {Link} from '@inertiajs/vue3'
 </script>
 <template>
         <footer
@@ -13,7 +14,7 @@
             class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
         >
             <li>
-                <a href="#" class="hover:underline me-4 md:me-6">Sobre-nós</a>
+                <Link :href="route('sobre.index')" class="hover:underline me-4 md:me-6">Sobre-nós</Link>
             </li>
             <li>
                 <a href="#" class="hover:underline me-4 md:me-6"
