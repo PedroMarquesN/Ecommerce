@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PedidosController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RelatoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
@@ -78,14 +80,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'redirectAdmin'], function(){
 
 Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     Route::get('dashboard', [AdminController::class,'index'])->name('admin.dashboard');
+    
+    //routes Pedidos 
+    Route::get('orders',[PedidosController::class,'index'])->name('order.index');
+    //end
 
+    //Routes Relatorios
+    Route::get('relatory',[RelatoryController::class,'index'])->name('relatory.index');
+    //end
+    
+    
     //produtos routes
     Route::get('products' , [ProductController::class, 'index'])->name('admin.products.index');
     Route::post('products/store', [ProductController::class, 'store'])->name('admin.products.store');
     Route::put('products/update', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('products/image/{id}', [ProductController::class, 'deleteImage'])->name('admin.products.image.delete');
     Route::delete('products/destroy/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
-
+    //end
    
 });
 

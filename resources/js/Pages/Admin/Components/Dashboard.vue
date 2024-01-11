@@ -2,6 +2,7 @@
 import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
 import AdminLayout from './AdminLayout.vue';
+import { Link, router } from '@inertiajs/vue3'
 
 
 
@@ -51,9 +52,9 @@ onMounted(() => {
                     </div>
                     <hr class="opacity-50" />
                     <div class="p-4">
-                        <button type="button"
+                        <Link :href="route('admin.products.index')" type="button"
                             class="text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">VER
-                            INFORMAÇÕES</button>
+                            INFORMAÇÕES</Link>
                     </div>
                 </div>
             </div>
@@ -135,9 +136,9 @@ onMounted(() => {
                     </div>
                     <hr class="opacity-50" />
                     <div class="p-4">
-                        <button type="button"
+                        <Link :href="route('admin.products.index')" type="button"
                             class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                            VER INFORMAÇÕES</button>
+                            VER INFORMAÇÕES</Link>
 
                     </div>
                 </div>
