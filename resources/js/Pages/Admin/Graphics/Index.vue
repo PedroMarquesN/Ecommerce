@@ -7,8 +7,10 @@ import UserAdminLayout from '../Components/AdminLayout.vue'
 // initialize components based on data attribute selectors
 onMounted(() => {
     initFlowbite();
-      // ApexCharts options and config
-  window.addEventListener("load", function() {
+
+})
+
+window.addEventListener("load", function() {
     let options = {
       chart: {
         height: "100%",
@@ -75,14 +77,13 @@ onMounted(() => {
         show: false,
       },
     }
-    console.log(ApexCharts)
+    console.log("texto")
     if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
       const chart = new ApexCharts(document.getElementById("area-chart"), options);
       chart.render();
     }
   });
 
-})
 </script>
 
 <template>
