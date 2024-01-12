@@ -14,10 +14,8 @@ onMounted(() => {
     <Navbar/>
     <Sidebar/>
 
-    <main class="p-4 md:ml-64 h-auto pt-20">
-
-    <slot/>
-    
-    </main>
+    <main class="h-auto md:ml-32 pt-20">
+  <slot/>
+</main>
   </div>
 </template>

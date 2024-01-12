@@ -30,7 +30,7 @@ onMounted(() => {
 
 <template>
     <AdminLayout>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4 py-11 lg:px-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4 py-11 lg:px-20 md:ml-32">
             <!-- Card 1: Produtos -->
             <div class="flex w-full">
                 <div
