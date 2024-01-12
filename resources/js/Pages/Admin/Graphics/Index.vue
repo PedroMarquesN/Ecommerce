@@ -30,17 +30,17 @@ const data = ref({
   datasets: [
     {
       label: 'Loja virtual',
-      data: [1500, 1418, 1456, 1526, 1356, 1256],
+      data: [3000, 5, 1655, 5000, 1000, 600],
       backgroundColor: '#1A56DB',
       borderColor: '#1A56DB',
-      lineTension: 0,
+      lineTension: 0.5,
     },
     {
       label: 'Loja PLatinum',
-      data: [643, 413, 765, 412, 1423, 1731],
+      data: [200, 700, 4000, 412, 1423, 6000],
       backgroundColor: '#7E3BF2',
       borderColor: '#7E3BF2',
-      lineTension: 0,
+      lineTension: 0.5,
     },
   ],
 })
@@ -87,7 +87,7 @@ onMounted(() => {
 
 <template>
   <UserAdminLayout>
-    <div class="max-w-xl w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+    <div class="max-w-full w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
       <div class="flex justify-between mb-5">
         <div>
           <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">$12,423</h5>
