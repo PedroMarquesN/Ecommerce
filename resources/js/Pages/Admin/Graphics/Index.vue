@@ -29,14 +29,14 @@ const data = ref({
   labels: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
   datasets: [
     {
-      label: 'Developer Edition',
+      label: 'Loja virtual',
       data: [1500, 1418, 1456, 1526, 1356, 1256],
       backgroundColor: '#1A56DB',
       borderColor: '#1A56DB',
       lineTension: 0,
     },
     {
-      label: 'Designer Edition',
+      label: 'Loja PLatinum',
       data: [643, 413, 765, 412, 1423, 1731],
       backgroundColor: '#7E3BF2',
       borderColor: '#7E3BF2',
@@ -87,11 +87,11 @@ onMounted(() => {
 
 <template>
   <UserAdminLayout>
-    <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+    <div class="max-w-xl w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
       <div class="flex justify-between mb-5">
         <div>
           <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">$12,423</h5>
-          <p class="text-base font-normal text-gray-500 dark:text-gray-400">Sales this week</p>
+          <p class="text-base font-normal text-gray-500 dark:text-gray-400">Vendas Da Semana</p>
         </div>
         <div
           class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
@@ -112,7 +112,7 @@ onMounted(() => {
           <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom"
             class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
             type="button">
-            Last 7 days
+            Ultimos 7 dias
             <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
               viewBox="0 0 10 6">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -132,8 +132,8 @@ onMounted(() => {
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7
-                  days</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Últimos 7
+                  dias</a>
               </li>
               <li>
                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30
@@ -148,7 +148,7 @@ onMounted(() => {
           <!-- Relatório de Vendas -->
           <a href="#"
             class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-            Sales Report
+            Relatório de Vendas
             <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 6 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
