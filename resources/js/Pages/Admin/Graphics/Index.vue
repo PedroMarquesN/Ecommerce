@@ -30,14 +30,14 @@ const data = ref({
   datasets: [
     {
       label: 'Loja virtual',
-      data: [3000, 5, 1655, 5000, 1000, 600],
+      data: [3000, 5, 1655, 5000, 1000, 600, 700],
       backgroundColor: '#1A56DB',
       borderColor: '#1A56DB',
       lineTension: 0.5,
     },
     {
       label: 'Loja PLatinum',
-      data: [200, 700, 4000, 412, 1423, 6000],
+      data: [200, 700, 4000, 412, 1423, 6000, 800],
       backgroundColor: '#7E3BF2',
       borderColor: '#7E3BF2',
       lineTension: 0.5,
@@ -132,7 +132,8 @@ onMounted(() => {
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
               </li>
               <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Últimos 7
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Últimos
+                  7
                   dias</a>
               </li>
               <li>
@@ -151,11 +152,18 @@ onMounted(() => {
             Relatório de Vendas
             <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="m1 9 4-4-4-4" />
-          </svg>
-        </a>
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 9 4-4-4-4" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="flex flex-nowrap justify-between mt-10 ">
+      <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Gráfico de Produtos</button>
+ 
+      <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Gráfico de Pedidos</button>
+
+    </div>
+
 </UserAdminLayout></template>
