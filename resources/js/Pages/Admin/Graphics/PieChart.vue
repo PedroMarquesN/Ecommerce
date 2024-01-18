@@ -1,54 +1,32 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import { Link, router } from '@inertiajs/vue3'
 import { initFlowbite } from 'flowbite'
 import UserAdminLayout from '../Components/AdminLayout.vue'
+import { Pie } from 'vue-chartjs'
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  ArcElement
 } from 'chart.js'
-import { Line } from 'vue-chartjs'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-)
-
+ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title)
 
 const data = ref({
-  labels: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
+  labels: ['Pizza', 'Hamburguer', 'Salada', 'Sobremesa', 'Bebida'],
   datasets: [
     {
-      label: 'Restaurante Peba',
-      data: [3000, 5, 1655, 5000, 1000, 600, 700],
-      backgroundColor: '#1A56DB',
-      borderColor: '#1A56DB',
-      lineTension: 0.5,
+      label: 'Vendas',
+      data: [1500, 1200, 500, 800, 1000],
+      backgroundColor: ['#FF4500', '#FFD700', '#32CD32', '#8A2BE2', '#1E90FF'],
+      borderColor: '#ffffff',
+      borderWidth: 1,
     },
-    {
-      label: 'Lanchonete do Dino',
-      data: [200, 700, 4000, 412, 1423, 6000, 800],
-      backgroundColor: '#7E3BF2',
-      borderColor: '#7E3BF2',
-      lineTension: 0.5,
-    },
-    {
-      label: 'Beco Do Espeto',
-      data: [456, 2000, 2654, 134, 1000, 2658, 500],
-      backgroundColor: '##FF6347',
-      borderColor: '##FF6347',
-      lineTension: 0.5,
-    }
   ],
 })
 
@@ -57,44 +35,35 @@ const options = ref({
   maintainAspectRatio: false,
   legend: {
     display: true,
+    position: 'bottom', // ou 'right', ou false para esconder
   },
   scales: {
     x: {
-      display: false,
+      grid: {
+        display: false,
+      },
     },
     y: {
-      display: false,
+      grid: {
+        display: false,
+      },
       ticks: {
         callback: (value) => '$' + value,
       },
     },
   },
-  elements: {
-    line: {
-      shadow: {
-        color: '#7E3BF2', // Cor da sombra
-        blur: 10, // Intensidade do desfoque
-        offsetX: 10, // Deslocamento horizontal
-        offsetY: 5, // Deslocamento vertical
-      },
-    },
-  },
-});
+})
 
-
-
-
-// initialize components based on data attribute selectors
+// inicializar os componentes com base nos seletores de atributos de dados
 onMounted(() => {
   initFlowbite();
-
 })
 
 </script>
 
 <template>
   <UserAdminLayout>
-    <div class="max-w-full w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+    <div class="max-w-5xl w-full bg-white rounded-lg md:ml-44 shadow dark:bg-gray-800 p-4 md:p-6">
       <div class="flex justify-between mb-5">
         <div>
           <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">$12,423</h5>
@@ -109,9 +78,9 @@ onMounted(() => {
           </svg>
         </div>
       </div>
-      <div id="line-chart" class="mb-4">
+      <div id="bar-chart" class="mb-4">
         <!-- Adicione o componente Vue Chart.js aqui com a classe de estilo desejada -->
-        <Line :data="data" :options="options" class="chart-style" />
+        <Pie :data="data" :options="options" class="chart-style" />
       </div>
       <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-5">
         <div class="flex justify-between items-center pt-5">
@@ -119,7 +88,7 @@ onMounted(() => {
           <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom"
             class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
             type="button">
-            Ultimos 7 dias
+            Últimos 7 dias
             <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
               viewBox="0 0 10 6">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -167,5 +136,14 @@ onMounted(() => {
       </div>
     </div>
 
-</UserAdminLayout>
-</template>
+    <div class="flex max-w-6x1 flex-nowrap justify-between mt-10 md:ml-36 mr-4">
+      <Link :href="route('graphic.index')" type="button"
+        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+      Gráfico de Vendas</Link>
+
+      <Link :href="route('graphic.bar')" type="button"
+        class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+      Gráfico de Pedidos</Link>
+
+  </div>
+</UserAdminLayout></template>

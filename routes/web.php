@@ -88,6 +88,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
 
     //Routes Graphics
     Route::get('graphics',[GraphicsController::class,'index'])->name('graphic.index');
+    Route::get('graphic/pie',[GraphicsController::class,'pie'])->name('graphic.pie');
+    Route::get('graphic/bar',[GraphicsController::class,'bar'])->name('graphic.bar');
     //End 
     //Routes Relatorios
     Route::get('relatory',[RelatoryController::class,'index'])->name('relatory.index');
