@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\GraphicsController;
 use App\Http\Controllers\Admin\PedidosController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RelatoryController;
+use App\Http\Controllers\Admin\UserControllController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CheckoutController;
@@ -85,7 +86,11 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
     //routes Pedidos 
     Route::get('orders',[PedidosController::class,'index'])->name('order.index');
     //end
+    // detail routes
 
+    Route::get('detail', [UserControllController::class,'index'])->name('detail.index');
+    Route::get('detail/user', [UserControllController::class, 'detail'])->name('user.detail');
+    //end
     //Routes Graphics
     Route::get('graphics',[GraphicsController::class,'index'])->name('graphic.index');
     Route::get('graphic/pie',[GraphicsController::class,'pie'])->name('graphic.pie');
